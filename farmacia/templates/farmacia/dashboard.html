@@ -1,0 +1,45 @@
+{% extends 'farmacia/base.html' %}
+{% block content %}
+<h2>Dashboard de Administrador</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total productos</h5>
+                <p class="card-text display-4">{{ total_productos }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Stock bajo (<5)</h5>
+                <p class="card-text display-4">{{ stock_bajo }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Ventas hoy</h5>
+                <p class="card-text display-4">{{ ventas_hoy }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Productos próximos a vencer (30 días)</h3>
+<table class="table table-danger">
+    <thead><tr><th>Nombre</th><th>Vencimiento</th><th>Stock</th></tr></thead>
+    <tbody>
+    {% for p in productos_proximos %}
+    <tr>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.fecha_vencimiento }}</td>
+        <td>{{ p.stock }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No hay productos próximos a vencer.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'farmacia/base.html' %}
+{% block content %}
+<h2>Ventas</h2>
+<table class="table">
+    <thead><tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th><th>Fecha</th><th>Vendedor</th><th>Cliente</th></tr></thead>
+    <tbody>
+    {% for v in ventas %}
+    <tr>
+        <td>{{ v.producto.nombre }}</td>
+        <td>{{ v.cantidad }}</td>
+        <td>{{ v.subtotal }}</td>
+        <td>{{ v.fecha }}</td>
+        <td>{{ v.vendedor.username }}</td>
+        <td>{{ v.cliente_nombre|default:"Anónimo" }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

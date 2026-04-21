@@ -1,0 +1,9 @@
+{% extends 'farmacia/base.html' %}
+{% block content %}
+<h2>Registrar venta</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Registrar</button>
+</form>
+{% endblock %}
